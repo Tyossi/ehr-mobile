@@ -1,0 +1,147 @@
+.appointment__details__container {
+  padding: 5rem 2rem;
+  padding-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.appointment__details__content {
+  width: 100%;
+}
+
+.appointment__status__and__icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15.2rem;
+}
+
+.appointment__status__span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.appointment__status__label {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  text-align: left;
+}
+
+.appointment__status__text {
+  background-color: #fffaeb;
+  color: #b54708;
+  padding: 0.2rem 0.8rem;
+  border-radius: 1.6rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+}
+
+.appointment__icons {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.appointment__status__icon__and__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appointment__state__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+}
+
+.appointment__state__text {
+  font-family: "Roboto", "sans-serif";
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #1d242e;
+  width: 26.5rem;
+}
+
+.countdown__time {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: left;
+  color: #1d242e;
+}
+
+.cancel__appointment__cta {
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  border: 1px solid #eefcff;
+  background: #eefcff;
+  color: #5fc9dc;
+  border-radius: 0.8rem;
+  padding: 1rem 7rem;
+  font-family: Inter;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+}
+
+.cancel__appointment__containter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel__warning__text {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  text-align: left;
+  margin-bottom: 3.2rem;
+}
+
+.cancel__window__ctas {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.cancel__back__btn {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  padding: 1rem 6.25rem;
+  color: #5fc9dc;
+  background-color: #eefcff;
+  border-radius: 0.8rem;
+}
+
+.proceed__cancel__btn {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  padding: 1rem 6.25rem;
+  border-radius: 0.8rem;
+  color: #eefcff;
+  background-color: #00869e;
+}
+
+@media screen and (min-width: 48rem) {
+  .admission__container {
+    padding: 15rem 1.6rem;
+  }
+
+  .appointment__details__content {
+    width: 40.8rem;
+  }
+}

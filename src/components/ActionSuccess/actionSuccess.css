@@ -1,0 +1,30 @@
+.action__success__container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: #ffffff;
+}
+
+.action__success__icon {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  text-align: center;
+}
+
+.action__success__cta {
+  font-family: Inter;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  padding: 1rem 7.7rem;
+  border-radius: 0.8rem;
+  background-color: #00869e;
+}

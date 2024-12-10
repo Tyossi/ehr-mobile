@@ -1,0 +1,72 @@
+.admission__tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.admission__tab {
+  padding: 1.7rem 1.6rem;
+  width: 100%;
+  border: 1px solid #eaecf0;
+  border-radius: 1.2rem;
+}
+
+.admission__diagnosis__and__status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.admission__diagnosis {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  text-align: left;
+}
+
+.admission__admitted__status {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  text-align: center;
+  padding: 0.2rem 0.8rem;
+  color: #344054;
+  background-color: #f2f4f7;
+  border-radius: 1.6rem;
+}
+.admission__discharged__status {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  text-align: center;
+  padding: 0.2rem 0.8rem;
+  border-radius: 1.6rem;
+  color: #027a48;
+  background-color: #ecfdf3;
+}
+
+.admission__date__and__ward {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.admission__detail__box {
+}
+
+.admission__detail__label {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  color: #344054;
+  margin-bottom: 0.4rem;
+}
+
+.admission__detail__text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: left;
+  color: #344054;
+}

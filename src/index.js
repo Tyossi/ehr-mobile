@@ -1,13 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import axios from "axios";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+export const api = axios.create({
+  baseURL: BASE_URL,
+  // withXSRFToken: true,
+  // withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,0 +1,181 @@
+.appointment__container {
+  padding: 12rem 1rem;
+  /* padding-top: 12rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.appointment__content {
+  width: 100%;
+}
+
+.content__switch__container {
+  /* width: fit-content; */
+  overflow-x: scroll;
+  border: 1px solid #eaecf0;
+  border-radius: 1.2rem;
+  box-shadow: 0px 1px 3px 0px #1018281a;
+  margin-bottom: 1.6rem;
+}
+
+.content__switches {
+  display: flex;
+  width: max-content;
+}
+.content__switch:not(:last-child) {
+  border-right: 1px solid #eaecf0;
+}
+
+.content__switch__inactive {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 2rem;
+  color: #1e1f1f;
+  padding: 1rem 1.6rem;
+  padding-bottom: 0.1rem;
+}
+
+.content__switch__active {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+  text-align: left;
+  color: #fcfcfd;
+  padding: 1rem 1.6rem;
+  background-color: #344054;
+}
+
+.book__appointment__cta__box {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 1.2rem 1.6rem;
+  background-color: #ffffff;
+  box-shadow: 0px -20px 24px -4px #10182814;
+}
+
+.book__appointment__cta {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #ffffff;
+  padding: 1rem;
+  width: 100%;
+  background-color: #00869e;
+  border: 1px solid #00869e;
+  border-radius: 0.8rem;
+}
+
+.appointment__booking__box__container {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.appointment__booking__form__box {
+  /* height: 40rem; */
+  width: 100%;
+  /* position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0; */
+  background-color: #ffffff;
+  padding: 2.5rem 1.6rem;
+  border-radius: 3.5rem 3.5rem 0 0;
+}
+
+.appointment__form__title__and__close {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.appointment__form__title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  text-align: left;
+}
+
+.appointment__booking__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment__input__label {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+  text-align: left;
+  margin-bottom: 0.6rem;
+}
+
+.appointment__booking__input {
+  padding: 1rem 1rem;
+  padding-left: 1.4rem;
+  border: 1px solid #d0d5dd;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  border-radius: 0.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  text-align: left;
+  color: #1e1f1f;
+  font-family: "Inter", "sans-serif";
+}
+
+.appointment__type__span {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  gap: 1.6rem;
+}
+
+.appointment__check__box {
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+.appointment__note__input {
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  border-radius: 0.8rem;
+  border: 1px solid #d0d5dd;
+  padding: 1rem 1.4rem;
+  color: #667085;
+  height: 15.4rem;
+  max-height: 15.4rem;
+  max-width: 100%;
+  font-family: "Inter", "sans-serif";
+  margin-bottom: 2.4rem;
+}
+
+@media screen and (min-width: 48rem) {
+  .appointment__container {
+    padding: 15rem 1.6rem;
+  }
+
+  .appointment__content {
+    width: 40.8rem;
+  }
+
+  .content__switch__container {
+    width: 40.8rem;
+  }
+
+  .appointment__booking__form__box {
+    width: 40.8rem;
+  }
+}

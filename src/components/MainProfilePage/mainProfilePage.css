@@ -1,0 +1,61 @@
+.main__profile__page__container {
+  padding: 5rem 0.7rem;
+  padding-top: 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.next__appointment__container {
+}
+
+.next__appointment__text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  margin-bottom: 0.8rem;
+}
+
+.link__tabs__container {
+  /* background-color: red; */
+}
+
+.link__tabs {
+  display: flex;
+  gap: 1.4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.link__tab {
+  padding: 2.4rem 0rem;
+  border: 1px solid #eaecf0;
+  border-radius: 0.8rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 17rem;
+}
+
+.link__tab__img {
+  margin-bottom: 2.4rem;
+}
+
+.link__tab__text {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 26rem) {
+  .main__profile__page__container {
+    padding: 15rem 1.6rem;
+  }
+
+  .main__profile__content {
+    width: 40.8rem;
+  }
+}

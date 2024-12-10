@@ -1,0 +1,35 @@
+.page__nav__container {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 1.8rem 3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+}
+
+.page__nav__content {
+  display: flex;
+  width: 100%;
+}
+
+.page__nav__back__arrow {
+}
+
+.page__nav__title {
+  font-family: "Roboto", "sans-serif";
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 18.75px;
+  text-align: center;
+  color: #1d242e;
+  width: 100%;
+}
+
+@media screen and (min-width: 26rem) {
+  .page__nav__content {
+    width: 40.8rem;
+  }
+}

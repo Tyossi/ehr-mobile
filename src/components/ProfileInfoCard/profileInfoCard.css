@@ -1,0 +1,50 @@
+.profile__info__card__container {
+  width: 100%;
+}
+
+.profile__info__card__content {
+  display: flex;
+  gap: 2rem;
+  border: 1px solid #eaecf0;
+  border-top: none;
+  border-radius: 0 0 1.2rem 1.2rem;
+  padding: 1rem;
+  padding-right: 1rem;
+  box-shadow: 0px 1px 3px 0px #1018281a;
+  margin-bottom: 1.5rem;
+}
+
+.profile__info__img {
+}
+
+.profile__info__texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile__info__patient__name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: left;
+  margin-bottom: 0.7rem;
+}
+
+.profile__info__text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  color: #00a7c5;
+}
+
+@media screen and (min-width: 26rem) {
+  .profile__info__card__container {
+    width: 40.8rem;
+  }
+
+  .profile__info__card__content {
+    padding: 2.4rem;
+  }
+}

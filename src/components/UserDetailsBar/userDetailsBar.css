@@ -1,0 +1,48 @@
+.profile__name__and__icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.4rem;
+  width: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  padding: 2rem;
+}
+
+.user__details__content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile__img__and__name {
+  display: flex;
+  align-items: center;
+}
+
+.profile__img {
+  height: 5.5rem;
+  width: 5.5rem;
+  margin-right: 0.8rem;
+}
+
+.profile__hi {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 18.75px;
+}
+
+.profile__name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 18.75px;
+}
+
+@media screen and (min-width: 26rem) {
+  .user__details__content {
+    width: 40.8rem;
+  }
+}

@@ -1,0 +1,37 @@
+.invoice__details__content {
+  background-color: #f9fafb;
+  border-radius: 1.2rem;
+  padding: 1.75rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.invoice__details__texts {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.invoice__details__label {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #344054;
+}
+
+.invoice__details__value {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: 0%;
+  color: #344054;
+}
+
+.invoice__accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}

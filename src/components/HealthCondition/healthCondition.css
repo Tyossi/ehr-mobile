@@ -1,0 +1,52 @@
+.health__condition-container {
+  padding: 8rem 1rem;
+}
+
+.health__condition-content {
+}
+
+.health__conditions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.health__condition {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.6rem;
+  border: 1px solid #eaecf0;
+  background-color: #fcfcfd;
+  border-radius: 0.8rem;
+}
+
+.health__condition-label {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  color: #344054;
+}
+
+.health__condition-text {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: #344054;
+}
+
+.health__condition-date {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.health__condition-date--text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  text-align: left;
+  color: #242d35;
+}

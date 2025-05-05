@@ -24,7 +24,7 @@ const Panel = () => {
     setUserData(data?.data);
   }, [data]);
 
-  if (isLoading) return <p>Loading...</p>;
+  // if (isLoading) return <p>Loading...</p>;
 
   return (
     <div>

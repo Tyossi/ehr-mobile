@@ -6,6 +6,8 @@ import { ReactComponent as EyeOffLogo } from "../../assets/icons/eye-off.svg";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useUserDatacontext } from "../../contexts/UserDataContent";
+import { useRecoilState } from "recoil";
+// import { userState } from "../../recoil/atoms";
 import { api } from "../..";
 
 import "./login.css";
@@ -13,6 +15,7 @@ import "./login.css";
 const useLogin = () => {
   const navigate = useNavigate();
   const { setUserId } = useUserDatacontext();
+  // const [userData, setUserData] = useRecoilState(userState);
 
   return useMutation({
     mutationFn: async ({ phone_no, password }) => {
@@ -24,8 +27,10 @@ const useLogin = () => {
     },
 
     onSuccess: (data) => {
+      console.log({ data });
       localStorage.setItem("token", data.data.token);
-      localStorage.setItem("userId", data?.data.patient?.id);
+      // localStorage.setItem("userId", data?.data.patient?.id);
+      localStorage.setItem("userId", 1);
 
       navigate("/panel/profile-page");
     },

@@ -5,7 +5,11 @@ import { ReactComponent as CloseIcon } from "../../assets/icons/close-icon.svg";
 import ActionSuccess from "../ActionSuccess/ActionSuccess";
 import { api } from "../..";
 import { useQuery } from "@tanstack/react-query";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import "./appointment.css";
+import MoreInfoModal from "../MoreInfoModal/MoreInfoModal";
+import BookAppointment from "../BookAppointment/BookAppointment";
 
 const getPatientAppointments = async (patientId) => {
   const response = await api.get(
@@ -35,12 +39,12 @@ const Appointment = () => {
   if (isLoading) return <p>Loading</p>;
 
   if (error) return <p>Error: {error.message}</p>;
-
-  console.log({ data });
-
+  const toggleMoreInfo = () => {
+    setShowBookAppointment(true);
+  };
   return (
     <div className="appointment__container">
-      <PageNav title="Appointment" />
+      <PageNav title="Appointment" onClickFunction={toggleMoreInfo} />
       <div className="appointment__content">
         <div className="content__switch__container">
           <div className="content__switches">
@@ -100,126 +104,32 @@ const Appointment = () => {
           Book Appointment
         </button>
       </div>
-      {showBookAppointment && (
-        <div className="appointment__booking__box__container">
+      {/* {showBookAppointment && ( */}
+      {/* <div className="appointment__booking__box__container">
           <div className="appointment__booking__form__box">
             <span className="appointment__form__title__and__close">
               <p className="appointment__form__title">Book Appointment</p>
               <CloseIcon onClick={() => setShowBookAppointment(false)} />
-            </span>
-            <form
-              action="submit"
-              className="appointment__booking__form"
-              onSubmit={handleSubmit}
-            >
-              <label
-                htmlFor="reasonForAppointment"
-                className="appointment__input__label"
-              >
-                Reason For Appointment
-              </label>
-              <select
-                type="text"
-                className="appointment__booking__input"
-                id="reasonForAppointment"
-              >
-                <option value="Select" className="appointment__booking__option">
-                  Select
-                </option>
-              </select>
+            </span> */}
+      <MoreInfoModal
+        isOpen={showBookAppointment}
+        onClose={() => setShowBookAppointment(false)}
+        title="Book Appointment"
+        height="100%"
+        noBorderRadius
+      >
+        <BookAppointment setShowBookinSuccess={setShowBookinSuccess} />
+        {/* </div> */}
+        {showBookingSuccess && (
+          <ActionSuccess
+            url="/panel/appointment"
+            text="Appointment booked successfully kindly wait for approval"
+          />
+        )}
+        {/* </div> */}
+      </MoreInfoModal>
 
-              <label
-                htmlFor="appointmentDate"
-                className="appointment__input__label"
-              >
-                Scheduled
-              </label>
-              <input
-                type="date"
-                className="appointment__booking__input"
-                id="appointmentDate"
-              />
-
-              <label
-                htmlFor="appointmentTime"
-                className="appointment__input__label"
-              >
-                Time
-              </label>
-              <select
-                type="time"
-                className="appointment__booking__input"
-                id="time"
-              >
-                <option
-                  value="00:00 AM-00:00 AM"
-                  className="appointment__booking__option"
-                >
-                  00:00 AM-00:00 AM
-                </option>
-              </select>
-              <span className="appointment__type__span">
-                <label
-                  htmlFor="appointmentType"
-                  className="appointment__input__label"
-                  style={{ marginBottom: "0rem" }}
-                >
-                  Appointment Type:
-                </label>
-                <input
-                  type="radio"
-                  id="office"
-                  name="office"
-                  value="office"
-                  className="appointment__check__box"
-                />
-                <label
-                  htmlFor="office"
-                  className="appointment__input__label"
-                  style={{ marginBottom: "0rem" }}
-                >
-                  Office
-                </label>
-                <input
-                  type="radio"
-                  value="virtual"
-                  name="virtual"
-                  id="virtual"
-                  className="appointment__check__box"
-                />
-                <label
-                  htmlFor="virtual"
-                  className="appointment__input__label"
-                  style={{ marginBottom: "0rem" }}
-                >
-                  Virtual
-                </label>
-              </span>
-              <label
-                htmlFor="appointmentNote"
-                className="appointment__input__label"
-              >
-                Note
-              </label>
-              <textarea
-                name="note"
-                id="appointmentNote"
-                className="appointment__note__input"
-              ></textarea>
-
-              <button className="book__appointment__cta">
-                Book Appointment
-              </button>
-            </form>
-          </div>
-          {showBookingSuccess && (
-            <ActionSuccess
-              url="/panel/appointment"
-              text="Appointment booked successfully kindly wait for approval"
-            />
-          )}
-        </div>
-      )}
+      {/* )} */}
     </div>
   );
 };

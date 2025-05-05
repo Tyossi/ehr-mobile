@@ -36,6 +36,8 @@ const AppointmentCard = ({ appointment }) => {
     dateTwo
   );
 
+  console.log({ appointment });
+
   return (
     <Link to={`/panel/appointment-details/${appointment.id}`}>
       <div className="next__appointment__box">

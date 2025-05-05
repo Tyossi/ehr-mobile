@@ -137,9 +137,36 @@
   font-family: "Inter", "sans-serif";
 }
 
-.appointment__type__span {
+.appointment__options {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+  /* align-items: center; */
+}
+.appointment__option {
   display: flex;
   align-items: center;
+  gap: 0.4rem;
+  border: 1px solid #d0d5dd;
+  border-radius: 4rem;
+  padding: 0.6rem 0.8rem;
+}
+
+.appointment__option__active {
+  background: #eefcff;
+  border: 1px solid #00a7c5;
+}
+
+.appointment__option__text {
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  letter-spacing: 0%;
+}
+.appointment__type__span {
+  display: flex;
+  /* flex-direction: column;
+  align-items: center; */
   margin-bottom: 0.8rem;
   gap: 1.6rem;
 }
@@ -156,18 +183,144 @@
   padding: 1rem 1.4rem;
   color: #667085;
   height: 15.4rem;
-  max-height: 15.4rem;
+  max-height: 11.4rem;
   max-width: 100%;
   font-family: "Inter", "sans-serif";
   margin-bottom: 2.4rem;
 }
 
+.available__date__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.date__slot__control {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.available__date__text {
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: 0%;
+  color: #344054;
+}
+
+.date__month {
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: 0%;
+  color: #344054;
+}
+
+.date__selection__ctas {
+  display: flex;
+  align-items: center;
+}
+
+.date__slots__container {
+  width: 100%;
+}
+
+.date__slots {
+  display: flex;
+  gap: 0.8rem;
+  overflow-x: scroll;
+  padding: 1.2rem 0;
+  margin-bottom: 1.6rem;
+  justify-content: flex-start;
+  width: 100%;
+  /* background-color: red; */
+}
+
+.date__slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 0.8rem;
+  border-radius: 1.2rem;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  border: 1px solid #98a2b3;
+  min-width: 5.9rem;
+}
+
+.time__slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 0.8rem;
+  border-radius: 1.2rem;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  min-width: 9rem;
+  height: 3.8rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid #98a2b3;
+}
+.slot__active {
+  background: #eefcff;
+  border: 1px solid #00a7c5;
+}
+.slot__inactive {
+  background: #ffffff;
+}
+.time__slot__text {
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  letter-spacing: 0%;
+}
+.time__slot__text__active {
+  color: #00a7c5;
+}
+.time__slot__text__inactive {
+  color: #344054;
+}
+
+.date__slot__day {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.time__slot__text {
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #333333;
+}
+
+.date__slot__num {
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+}
+
+@media screen and (min-width: 25rem) {
+  .appointment__option__text {
+    font-size: 1.4rem;
+  }
+}
 @media screen and (min-width: 48rem) {
   .appointment__container {
     padding: 15rem 1.6rem;
   }
 
-  .appointment__content {
+  /* .appointment__content {
     width: 40.8rem;
   }
 
@@ -177,5 +330,5 @@
 
   .appointment__booking__form__box {
     width: 40.8rem;
-  }
+  } */
 }

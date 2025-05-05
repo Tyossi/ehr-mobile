@@ -11,13 +11,15 @@ import "./patientProfile.css";
 const PatientProfile = () => {
   const { userData } = useUserDatacontext();
 
-  const birthDateString = userData?.dob.substr(0, 10);
+  // const birthDateString = userData?.dob?.substr(0, 10);
 
-  const calculateAge = (birthDateString) => {
-    return differenceInYears(new Date(), new Date(birthDateString));
-  };
+  // console.log({ userData });
 
-  const age = useMemo(() => calculateAge(birthDateString), [birthDateString]);
+  // const calculateAge = (birthDateString) => {
+  //   return differenceInYears(new Date(), new Date(birthDateString));
+  // };
+
+  // const age = useMemo(() => calculateAge(birthDateString), [birthDateString]);
 
   return (
     <div className="patient__profile__container">
@@ -55,8 +57,8 @@ const PatientProfile = () => {
             className="patient__bio__data__span"
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            <p className="patient__bio__text">{birthDateString}</p>
-            <p className="patient__bio__text">{age} </p>
+            <p className="patient__bio__text">{userData.dob}</p>
+            <p className="patient__bio__text">{userData.age} </p>
           </span>
           <div className="patient__blood__group__and__genotype">
             <div className="patient__bio__texts__box">

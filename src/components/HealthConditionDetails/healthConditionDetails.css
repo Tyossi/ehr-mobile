@@ -1,0 +1,35 @@
+.health__condition__details__container {
+  padding: 12rem 1rem;
+}
+
+.health__condition-details {
+  border: 1px solid #eaecf0;
+  border-radius: 1.2rem;
+  background-color: #ffffff;
+  padding: 1.7rem 0.8rem;
+}
+
+.health__condition__title__box {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  background-color: #f9fafb;
+  padding: 1.6rem;
+  margin-bottom: 1.7rem;
+}
+
+.health__condition__title__label {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  text-align: left;
+  color: #475467;
+}
+
+.health__condition__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  color: #333333;
+}

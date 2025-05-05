@@ -40,9 +40,6 @@ const AppointmentDetails = () => {
 
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log({ data });
-
-  // const status = "upcoming";
   const status = data.data.data.status;
 
   return (
@@ -52,12 +49,13 @@ const AppointmentDetails = () => {
         showInfoIcon={true}
         onClickFunction={toggleMoreInfo}
       />
-      {showMoreInfo && (
-        <MoreAppointmentInfoModal
-          setShowMoreInfo={setShowMoreInfo}
-          data={data}
-        />
-      )}
+      <MoreInfoModal
+        onClose={() => setShowMoreInfo(false)}
+        isOpen={showMoreInfo}
+        title="Appointment Details"
+      >
+        <MoreAppointmentInfoModal data={data} />
+      </MoreInfoModal>
       <div className="appointment__details__content">
         <div
           className="appointment__status__and__icons"
@@ -81,12 +79,12 @@ const AppointmentDetails = () => {
             <PhoneIcon />
           </span>
         </div>
-        {status === "upcoming" ? (
+        {status === "pending" ? (
           <div className="appointment__status__icon__and__text">
             <div className="appointment__state__box">
               <UpcomingIcon />
-              <p className="appointment__state__text">Appointment Begins in:</p>
-              <p className="countdown__time">02 : 12 : 12</p>
+              <p className="appointment__state__text">Appointment Begins:</p>
+              <p className="countdown__time">{data.data.data.time}</p>
               <button
                 className="cancel__appointment__cta"
                 onClick={() => setShowCancel(true)}
@@ -113,32 +111,28 @@ const AppointmentDetails = () => {
       ) : (
         ""
       )}
-      {showCancel && (
-        <div className="appointment__booking__box__container">
-          <div className="appointment__booking__form__box">
-            <div className="cancel__appointment__containter">
-              <WarningIcon />
-              <p className="cancel__warning__text">
-                You are about to cancel this appointment
-              </p>
-              <div className="cancel__window__ctas">
-                <button
-                  className="cancel__back__btn"
-                  onClick={() => setShowCancel(false)}
-                >
-                  Back
-                </button>
-                <button
-                  className="proceed__cancel__btn"
-                  onClick={() => setShowCancelSuccess(true)}
-                >
-                  Proceed
-                </button>
-              </div>
-            </div>
+      <MoreInfoModal isOpen={showCancel} onClose={() => setShowCancel(false)}>
+        <div className="cancel__appointment__containter">
+          <WarningIcon />
+          <p className="cancel__warning__text">
+            You are about to cancel this appointment
+          </p>
+          <div className="cancel__window__ctas">
+            <button
+              className="cancel__back__btn"
+              onClick={() => setShowCancel(false)}
+            >
+              Back
+            </button>
+            <button
+              className="proceed__cancel__btn"
+              onClick={() => setShowCancelSuccess(true)}
+            >
+              Proceed
+            </button>
           </div>
         </div>
-      )}
+      </MoreInfoModal>
 
       {showCancelSuccess && (
         <ActionSuccess

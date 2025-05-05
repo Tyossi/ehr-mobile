@@ -19,7 +19,7 @@ const PageNav = (props) => {
         {showInfoIcon && (
           <InfoIcon
             style={{ marginRight: ".6rem" }}
-            onClick={() => onClickFunction()}
+            onClick={onClickFunction}
           />
         )}
       </span>

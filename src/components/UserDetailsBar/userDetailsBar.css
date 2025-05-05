@@ -42,7 +42,7 @@
 }
 
 @media screen and (min-width: 26rem) {
-  .user__details__content {
+  /* .user__details__content {
     width: 40.8rem;
-  }
+  } */
 }

@@ -1,0 +1,89 @@
+.medical__history__details__container {
+  padding: 8rem 1rem;
+}
+
+.medical__history__cards {
+  padding: 1.6rem 0.8rem;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border: 1px solid #eaecf0;
+  border-radius: 1.2rem;
+}
+
+.medical__history__card {
+}
+
+.medical__history__card__heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  text-align: left;
+  color: #1e1f1f;
+}
+
+.medical__history__card__heading-and-CTAs {
+  margin-bottom: 1.6rem;
+}
+
+.medical__history-card--details {
+  padding: 3rem 1rem;
+  background-color: #f2f4f7;
+  border-radius: 0.8rem;
+}
+
+.investigation__type__span {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.investigation__type__label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: left;
+  color: #475467;
+  margin-bottom: 0.8rem;
+}
+
+.investigation__type__text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: left;
+  color: #333333;
+}
+
+.investigation__result__tag {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+  text-align: left;
+  margin-bottom: 0.8rem;
+  color: #475467;
+}
+
+.investigation__finding-and-result {
+  display: flex;
+  width: 21.9rem;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.investigation__finding {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: left;
+  color: #333333;
+}
+
+.investigation__result {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: left;
+  color: #333333;
+}

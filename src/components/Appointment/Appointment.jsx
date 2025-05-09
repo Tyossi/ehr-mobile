@@ -22,8 +22,8 @@ const Appointment = () => {
   // const patientId = 352;
   const patientId = localStorage.getItem("userId");
   const [showBookAppointment, setShowBookAppointment] = useState(false);
-  const [showBookingSuccess, setShowBookinSuccess] = useState(false);
-  const [currentData, setCurrentData] = useState("completed");
+  const [showBookingSuccess, setShowBookingSuccess] = useState(false);
+  const [currentData, setCurrentData] = useState("pending");
   const [appointments, setAppointments] = useState([]);
 
   const { data, error, isLoading } = useQuery({
@@ -31,10 +31,10 @@ const Appointment = () => {
     queryFn: () => getPatientAppointments(patientId),
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowBookinSuccess(true);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setShowBookingSuccess(true);
+  // };
 
   if (isLoading) return <p>Loading</p>;
 
@@ -118,7 +118,7 @@ const Appointment = () => {
         height="100%"
         noBorderRadius
       >
-        <BookAppointment setShowBookinSuccess={setShowBookinSuccess} />
+        <BookAppointment setShowBookingSuccess={setShowBookingSuccess} />
         {/* </div> */}
         {showBookingSuccess && (
           <ActionSuccess

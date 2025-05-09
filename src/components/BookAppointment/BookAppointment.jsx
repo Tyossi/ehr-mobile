@@ -12,6 +12,7 @@ import SearchableSelect from "../SearchableSelect";
 import { useUserDatacontext } from "../../contexts/UserDataContent";
 import { api } from "../..";
 import "./bookAppointment.css";
+import { set } from "date-fns";
 
 const getDoctors = async (facilityId) => {
   const response = await api.get(`/patient/doctors/?facility_id=${facilityId}`);
@@ -26,26 +27,28 @@ const options = [
   { value: "Other", label: "Other" },
 ];
 
-const timeSlots = [
-  { value: "8:00 am", label: "8:00 am" },
-  { value: "9:00 am", label: "9:00 am" },
-  { value: "10:00 am", label: "10:00 am" },
-  { value: "11:00 am", label: "11:00 am" },
-  { value: "12:00 pm", label: "12:00 pm" },
-  { value: "1:00 pm", label: "1:00 pm" },
-  { value: "2:00 pm", label: "2:00 pm" },
-  { value: "3:00 pm", label: "3:00 pm" },
-];
+// const timeSlots = [
+//   { value: "8:00 am", label: "8:00 am" },
+//   { value: "9:00 am", label: "9:00 am" },
+//   { value: "10:00 am", label: "10:00 am" },
+//   { value: "11:00 am", label: "11:00 am" },
+//   { value: "12:00 pm", label: "12:00 pm" },
+//   { value: "1:00 pm", label: "1:00 pm" },
+//   { value: "2:00 pm", label: "2:00 pm" },
+//   { value: "3:00 pm", label: "3:00 pm" },
+// ];
 
-const BookAppointment = (setShowBookinSuccess) => {
-  const [selectedAppointmentType, setSelectedAppointmentType] =
-    useState("inHospital");
-  const [sepcialists, setSpecialists] = useState(null);
+const BookAppointment = ({ setShowBookingSuccess }) => {
+  const [selectedType, setSelectedType] = useState("");
+  const [sepcialists, setSpecialists] = useState([]);
+  const [doctors, setDoctors] = useState([]);
   const [selectedTime, setSelectedTime] = useState(null);
+  const [availabilities, setAvailabilities] = useState([]);
+  const [departmentId, setDepartmentId] = useState(null);
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
-  const [availableDateSlots, setAvailableDateSlots] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [dateSlots, setDateSlots] = useState([]);
+  const [selectedDateId, setSelectedDateId] = useState(null);
   const { userData } = useUserDatacontext();
   const facilityId = userData?.facility_id;
   const { data, error, isLoading } = useQuery({
@@ -55,14 +58,16 @@ const BookAppointment = (setShowBookinSuccess) => {
 
   console.log({ data });
 
+  console.log({ userData });
+
   const validationSchema = yup.object().shape({
-    reasonForAppointment: yup.string().required("This field is required"),
-    // appointmentDate: yup.date().required("Required"),
-    specialist: yup.string().required("Required"),
-    appointmentType: yup.string().required("Required"),
-    // appointmentNote: yup.string().required("Required"),
-    // appointmentTime: yup.string().required("Required"),
-    // appointmentNote: yup.string().required("Required"),
+    // reasonForAppointment: yup.string().required("This field is required"),
+    date: yup.date().required("Required. Please select a date"),
+    staff: yup.string().required("Required"),
+    type: yup.string().required("Required"),
+    time: yup.string().required("Required. Please select a time"),
+    description: yup.string().required("Required"),
+    // description: yup.string().required("Required"),
   });
 
   const {
@@ -77,22 +82,48 @@ const BookAppointment = (setShowBookinSuccess) => {
     validationSchema,
     enableReinitialize: true,
     initialValues: {
-      reasonForAppointment: "",
-      specialist: "",
-      appointmentType: "",
+      department_id: departmentId,
+      patient_id: userData?.id,
+      facility_id: facilityId,
+      // reasonForAppointment: "",
+      staff: null,
+      type: "",
+      date: "",
+      time: "",
+      description: "",
     },
     onSubmit: (values) => {
       console.log(values);
-      window.alert("Booking Successful");
-      //   setShowBookinSuccess(true);
+      makeAppointment(values);
+      // window.alert("Booking Successful");
     },
   });
 
+  const makeAppointment = async (values) => {
+    try {
+      const response = await api.post("/staff/appointments", values);
+      setShowBookingSuccess(true);
+      console.log("Booking Successful", response);
+      window.alert("Booking Successful");
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // const handleCustomSubmit = (e) => {
+  //   e.preventDefault();
+  //   handleSubmit(); // call Formik's submit
+  // };
+
   useEffect(() => {
     if (data) {
-      const options = data.data.map((doctor) => ({
+      // setDoctors(data.data);
+      const options = data.data?.map((doctor) => ({
         value: doctor.id,
         label: `${doctor.first_name} ${doctor.last_name}`,
+        availabilities: doctor.availabilities,
+        department_id: doctor.department_id,
       }));
       // setFieldValue("specialist", options);
       setSpecialists(options);
@@ -100,23 +131,90 @@ const BookAppointment = (setShowBookinSuccess) => {
   }, [data]);
 
   // useEffect(() => {
+  //   // const selectedSpecialist = doctors?.find(
+  //   //   (doctor) => doctor.id === values.staff
+  //   // );
+  //   // const availabilities = selectedSpecialist?.availabilities;
+  //   // setDepartmentId(selectedSpecialist?.department_id);
+  //   if (availabilities) {
+  //     const dateSlots = availabilities?.map((dateSlot) => ({
+  //       id: dateSlot?.id,
+  //       value: dateSlot?.date,
+  //     }));
+  //     setDateSlots(dateSlots);
+  //     // setAvailableTimeSlots(timeSlots);
+  //   }
+  // }, [availabilities]);
+
+  useEffect(() => {
+    if (selectedDateId) {
+      console.log("selectedDateId", selectedDateId);
+      console.log("availabilities", availabilities);
+      const selectedDate = availabilities?.find(
+        (date) => date.id === selectedDateId
+      );
+
+      console.log("selectedDate", selectedDate);
+      const timeSlots = selectedDate?.available_times?.map(
+        (timeSlot) => timeSlot
+      );
+
+      console.log("timeSlots", timeSlots);
+      setAvailableTimeSlots(timeSlots);
+    }
+
+    console.log("availableTimeSlots", availableTimeSlots);
+  }, [availabilities, selectedDateId]);
+
+  // useEffect(() => {
+  //   setFieldValue("type", selectedType);
+  // }, [selectedType, setFieldValue]);
+
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+
+    const weekday = date.toLocaleDateString("en-US", { weekday: "short" });
+    const day = date.toLocaleDateString("en-US", { day: "2-digit" });
+    const year = date.getFullYear();
+
+    return (
+      <>
+        <p className="date__slot__day">{weekday}</p>
+        <p className="date__slot__num">{day}</p>
+        <p className="date__slot__num">{year}</p>
+      </>
+    );
+  };
+
+  // useEffect(() => {
   //   setAvailableTimeSlots(selectedSpecialist.availabilities);
   // }, [selectedSpecialist]);
+  useEffect(() => {
+    setFieldValue("staff", selectedSpecialist?.value);
+    setFieldValue("department_id", selectedSpecialist?.department_id);
+    const availabilities = selectedSpecialist?.availabilities;
+    setAvailabilities(availabilities);
+    console.log("availabilities", availabilities);
+
+    if (availabilities) {
+      const dateSlots = availabilities?.map((dateSlot) => ({
+        id: dateSlot?.id,
+        value: dateSlot?.date,
+      }));
+      setDateSlots(dateSlots);
+      // setAvailableTimeSlots(timeSlots);
+    }
+  }, [selectedSpecialist]);
 
   if (isLoading) return <p>Loading</p>;
 
   if (error) return <p>Error: {error.message}</p>;
   console.log({ values });
-  console.log({ data });
 
   return (
-    <form
-      action="submit"
-      className="appointment__booking__form"
-      onSubmit={handleSubmit}
-    >
+    <form className="appointment__booking__form" onSubmit={handleSubmit}>
       <label
-        htmlFor="appointmentType"
+        htmlFor="type"
         className="appointment__input__label"
         style={{ marginBottom: "1rem" }}
       >
@@ -125,10 +223,11 @@ const BookAppointment = (setShowBookinSuccess) => {
       <div className="appointment__options">
         <div
           className={`appointment__option ${
-            selectedAppointmentType === "inHospital" ? "slot__active" : ""
+            selectedType === "inHospital" ? "slot__active" : ""
           }`}
           onClick={() => {
-            setSelectedAppointmentType("inHospital");
+            setSelectedType("inHospital");
+            setFieldValue("type", "inHospital");
           }}
         >
           <HospitalIcon />{" "}
@@ -136,27 +235,32 @@ const BookAppointment = (setShowBookinSuccess) => {
         </div>
         <div
           className={`appointment__option ${
-            selectedAppointmentType === "virtual" ? "slot__active" : ""
+            selectedType === "virtual" ? "slot__active" : ""
           }`}
           onClick={() => {
-            setSelectedAppointmentType("virtual");
+            setSelectedType("virtual");
+            setFieldValue("type", "virtual");
           }}
         >
           <VirtualIcon /> <p className="appointment__option__text">Virtual</p>
         </div>
         <div
           className={`appointment__option ${
-            selectedAppointmentType === "homeVisits" ? "slot__active" : ""
+            selectedType === "homeVisits" ? "slot__active" : ""
           }`}
           onClick={() => {
-            setSelectedAppointmentType("homeVisits");
+            setSelectedType("homeVisits");
+            setFieldValue("type", "homeVisits");
           }}
         >
           <HomeIcon /> <p className="appointment__option__text">Home Visits</p>
         </div>
       </div>
+      {touched.type && errors.type && (
+        <p className="form__error">{errors.type}</p>
+      )}
 
-      <label
+      {/* <label
         htmlFor="reasonForAppointment"
         className="appointment__input__label"
       >
@@ -171,107 +275,111 @@ const BookAppointment = (setShowBookinSuccess) => {
         classNamePrefix="select"
       />
       {touched.reasonForAppointment && errors.reasonForAppointment && (
-        <div className="text-red-600 text-sm mt-1">
-          {errors.reasonForAppointment}
-        </div>
-      )}
-      {/* <select
-        type="text"
-        className="appointment__booking__input"
-        id="reasonForAppointment"
-      >
-        <option value="Select" className="appointment__booking__option">
-          Select
-        </option>
-      </select> */}
+        <p className="form__error">{errors.reasonForAppointment}</p>
+      )} */}
 
-      <label htmlFor="appointmentDate" className="appointment__input__label">
+      <label htmlFor="staff" className="appointment__input__label">
         Find the right speciialist
       </label>
       <SearchableSelect
-        name="reasonForAppointment"
+        name="staff"
         options={sepcialists}
-        value={values.specialist}
-        onChange={(value) => setFieldValue("specialist", value)}
+        value={values.staff}
+        // onChange={(value) => setFieldValue("staff", value)}
+        onChange={(value) => setSelectedSpecialist(value)}
         handleBlur={handleBlur}
         classNamePrefix="select"
+        setAvailabilities={setAvailabilities}
+        setDepartmentId={setDepartmentId}
       />
-      {touched.specialist && errors.specialist && (
-        <div className="text-red-600 text-sm mt-1">{errors.specialist}</div>
+      {touched.staff && errors.staff && (
+        <p className="form__error">{errors.staff}</p>
       )}
 
       <div className="available__date__container">
         <div className="date__slot__control">
           <p className="available__date__text">Date</p>
-          <div className="date__selection__ctas">
+          {/* <div className="date__selection__ctas">
             <LeftIcon />
             <p className="date__month">Mar</p>
             <RightIcon />
-          </div>
+          </div> */}
         </div>
         <div className="date__slots__container">
           <div className="date__slots">
-            <div className="date__slot slot__active">
-              <p className="date__slot__day">Today</p>
-              <p className="date__slot__num">12</p>
-            </div>
-            <div className="date__slot">
+            {dateSlots?.map((slot) => {
+              if (slot.value === null) return null;
+              return (
+                <div
+                  className={`date__slot ${
+                    selectedDateId === slot.id ? "slot__active" : ""
+                  }`}
+                  onClick={() => {
+                    setSelectedDateId(slot.id);
+                    setFieldValue("date", slot.value?.substr(0, 10));
+                  }}
+                >
+                  {/* <p className="date__slot__day">Today</p> */}
+                  {/* <p className="date__slot__num">{slot.value?.substr(0, 10)}</p> */}
+                  {slot.value ? formatDate(slot.value) : "No Date"}
+                </div>
+              );
+            })}
+            {/* <div className="date__slot">
               <p className="date__slot__day">Tue</p>
               <p className="date__slot__num">12</p>
             </div>
-            <div className="date__slot">
-              <p className="date__slot__day">Wed</p>
-              <p className="date__slot__num">12</p>
-            </div>
-            <div className="date__slot">
-              <p className="date__slot__day">Thu</p>
-              <p className="date__slot__num">12</p>
-            </div>
-            <div className="date__slot">
-              <p className="date__slot__day">Fri</p>
-              <p className="date__slot__num">12</p>
-            </div>
-            <div className="date__slot">
-              <p className="date__slot__day">Sat</p>
-              <p className="date__slot__num">12</p>
-            </div>
+        
+            */}
           </div>
         </div>
       </div>
+      {touched.date && errors.date && (
+        <p className="form__error">{errors.date}</p>
+      )}
 
       <div className="available__date__container">
         <div className="date__slot__control">
           <p className="available__date__text">Time</p>
-          <div className="date__selection__ctas">
+          {/* <div className="date__selection__ctas">
             <LeftIcon />
             <p className="date__month">Morning</p>
             <RightIcon />
-          </div>
+          </div> */}
         </div>
         <div className="date__slots__container">
           <div className="date__slots">
-            {timeSlots.map((slot) => (
+            {availableTimeSlots?.map((slot) => (
               <div
                 className={`time__slot ${
-                  selectedTime === slot.value ? "slot__active" : ""
+                  selectedTime === slot ? "slot__active" : ""
                 }`}
                 key={slot.value}
-                onClick={() => setSelectedTime(slot.value)}
+                onClick={() => {
+                  setSelectedTime(slot);
+                  setFieldValue("time", slot);
+                }}
               >
-                <p className="time__slot__text">{slot.label}</p>
+                <p className="time__slot__text">{slot}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <label htmlFor="appointmentNote" className="appointment__input__label">
+      <label htmlFor="description" className="appointment__input__label">
         Note
       </label>
       <textarea
-        name="note"
-        id="appointmentNote"
+        name="description"
+        id="description"
         className="appointment__note__input"
+        value={values.description}
+        onChange={handleChange}
+        handleBlur={handleBlur}
       ></textarea>
+      {touched.description && errors.description && (
+        <p className="form__error">{errors.description}</p>
+      )}
 
       <button className="book__appointment__cta" type="submit">
         Book Appointment

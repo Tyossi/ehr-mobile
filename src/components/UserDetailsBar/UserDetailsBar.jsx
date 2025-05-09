@@ -27,10 +27,10 @@ const UserDetailsBar = () => {
             </p>
           </div>
         </div>
-        <div className="profile__icons">
+        {/* <div className="profile__icons">
           <SearchIcon />
           <BellIcon />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -42,9 +42,9 @@ const MainProfilePage = () => {
     <div className="main__profile__page__container">
       <UserDetailsBar />
       <div className="main__profile__content">
-        <div className="next__appointment__container">
+        {/* <div className="next__appointment__container">
           <p className="next__appointment__text">Next Appointment</p>
-        </div>
+        </div> */}
         {data.data.data
           .filter(
             (appointment, index) =>

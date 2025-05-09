@@ -21,6 +21,8 @@ const PatientProfile = () => {
 
   // const age = useMemo(() => calculateAge(birthDateString), [birthDateString]);
 
+  console.log("userData", userData);
+
   return (
     <div className="patient__profile__container">
       <PageNav title="Profile" />
@@ -38,7 +40,7 @@ const PatientProfile = () => {
             <div className="patient__card__no__and__name">
               <p className="patient__full__name">{userData?.full_name}</p>
               <p className="patient__card__num">Card No: {userData?.card_no}</p>
-              <p className="patient__pic__upload__cta">Add Picture</p>
+              {/* <p className="patient__pic__upload__cta">Add Picture</p> */}
             </div>
           </div>
           <p className="patient__bio__data__label">Phone Number</p>
@@ -57,8 +59,8 @@ const PatientProfile = () => {
             className="patient__bio__data__span"
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            <p className="patient__bio__text">{userData.dob}</p>
-            <p className="patient__bio__text">{userData.age} </p>
+            <p className="patient__bio__text">{userData?.dob}</p>
+            <p className="patient__bio__text">{userData?.age} </p>
           </span>
           <div className="patient__blood__group__and__genotype">
             <div className="patient__bio__texts__box">
